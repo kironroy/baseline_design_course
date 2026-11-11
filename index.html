@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Sketches - Kiron Roy</title>
+  <meta name="description" content="Baseline graphic design coursework.">
+  <meta property="og:title" content="Kiron Roy | Visual Artist">
+  <meta property="og:description" content="Baseline graphic design coursework.">
+  <meta name="keywords" content="Baseline graphic design coursework.">
+
+  <!-- Preload the largest LCP image to fetch it immediately -->
+  <link rel="preload" as="image" href="/baseline/prac_1-480.webp"
+    imagesrcset="/baseline/prac_1-480.webp 480w, /baseline/prac_1-800.webp 800w, /baseline/prac_1.webp 1200w"
+    imagesizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px">
+
+  <!-- Open Graph & Twitter meta tags -->
+  <meta property="og:title" content="Kiron's Artwork" />
+  <meta property="og:description" content="Selected work by Kiron Roy." />
+  <meta property="og:url" content="https://kironroy.dev/baseline_sketches" />
+  <link rel="canonical" href="https://kironroy.dev/baseline_sketches" />
+  <meta property="og:image" content="https://kironroy.dev/artworktwitter.png" />
+  <meta property="og:image:alt" content="Kiron's Artwork" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: #0f172a;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 20px 0 10px;
+      text-align: center;
+      color: #f8f8f8;
+    }
+
+    /* Scroll-to-top button */
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: yellow;
+      font-weight: bold;
+      color: #1b1b1b;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+      opacity: 0.85;
+      box-shadow: 0 8px 9px -9px rgba(9, 9, 9, 0.8);
+    }
+
+    #topBtn:hover {
+      background-color: rgba(140, 255, 0, 1);
+    }
+
+    /* Gallery styles - single column on mobile with equal left/right margins */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      /* Generous spacing between stacked and grid images */
+      width: 90%;
+      max-width: 1200px;
+      margin: 24px auto 40px;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      /* Rounded corners for the container */
+      background-color: #2b2b2b;
+      border: 2px solid #737373;
+      /* Distinct, clean border */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      padding: 5px;
+      /* 5px padding all around the image */
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      /* Softly rounds the image corners inside the border */
+    }
+
+    .placeholder {
+      width: 100%;
+      border-radius: 6px;
+      filter: blur(5px);
+      transition: opacity 0.5s ease-out;
+      display: block;
+    }
+
+    .full-res {
+      width: calc(100% - 10px);
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.7s ease-in;
+    }
+
+    /* Optional styling for separation */
+    .above-fold,
+    .below-fold {
+      display: contents;
+    }
+
+    /* Three columns for laptop/desktop only */
+    @media (min-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+    }
+
+    /* --- NEW RULES FOR LARGE SCREENS AND TVs --- */
+
+    /* Standard 1080p TVs & Large Monitors (1920px and up) */
+    @media (min-width: 1920px) {
+      .gallery {
+        max-width: 1800px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+
+      h1 {
+        font-size: 3rem;
+        padding: 40px 0 20px;
+      }
+
+      #topBtn {
+        font-size: 24px;
+        padding: 20px;
+        bottom: 40px;
+        right: 50px;
+      }
+    }
+
+    /* 4K TVs and Ultra-Wide Screens (2560px and up) */
+    @media (min-width: 2560px) {
+      .gallery {
+        max-width: 95%;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 36px;
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+    }
+
+    /* True 4K TVs (3840px and up) */
+    @media (min-width: 3840px) {
+      .gallery {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 44px;
+      }
+
+      h1 {
+        font-size: 5rem;
+      }
+
+      #topBtn {
+        font-size: 30px;
+        padding: 25px;
+        bottom: 60px;
+        right: 80px;
+      }
+    }
+
+    /* --- TOP BANNER --- */
+    .site-banner {
+      width: 100%;
+      background-color: #1b1b1b;
+      color: #ffffff;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .banner-content {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-weight: 700;
+      font-size: 1.55rem;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+
+    .banner-nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .banner-nav a {
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .banner-nav a:hover {
+      color: rgba(140, 255, 0, 1);
+    }
+
+    /* --- FOOTER --- */
+    .site-footer {
+      width: 100%;
+      padding: 40px 0 30px;
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888888;
+    }
+
+    /* Ensure banner expands on extra large screens alongside the gallery */
+    @media (min-width: 1920px) {
+      .banner-content {
+        max-width: 1800px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-banner">
+    <div class="banner-content">
+      <span class="site-title">Baseline Coursework</span>
+      <!-- <nav class="banner-nav">
+        <a href="https://kironroy.dev/#projects">Projects</a>
+      </nav> -->
+    </div>
+  </header>
+  <main>
+    <h1>Design Sketches</h1>
+    <div class="gallery">
+      <!-- PRIORITY IMAGES: Use standard src/srcset, fetchpriority="high", NO loading="lazy". 
+         Replace "800" and "600" with the actual aspect ratio dimensions of your files. -->
+      <img src="/baseline/_people_2.webp"
+        srcset="/baseline/_people_2.webp-480.webp 480w, /baseline/_people_2.webp-800.webp 800w, /baseline/_people_2.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" fetchpriority="high" width="800" height="600"
+        alt="People sketches." />
+
+      <img src="/baseline/prac_1.webp"
+        srcset="/baseline/prac_1-480.webp 480w, /baseline/prac_1-800.webp 800w, /baseline/prac_1.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" fetchpriority="high" width="800" height="600"
+        alt="Thumbnail sketches exercise." />
+
+      <img src="/baseline/prac_2.webp"
+        srcset="/baseline/prac_2-480.webp 480w, /baseline/prac_2-800.webp 800w, /baseline/prac_2.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" fetchpriority="high" width="800" height="600"
+        alt="Film poster sketches and notes." />
+
+      <img src="/baseline/prac_3.webp"
+        srcset="/baseline/prac_3-480.webp 480w, /baseline/prac_3-800.webp 800w, /baseline/prac_3.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" fetchpriority="high" width="800" height="600"
+        alt="Visual hierarchy studies." />
+
+      <!-- REMAINING IMAGES: Use native browser loading="lazy" with standard src/srcset -->
+      <img src="/baseline/prac_4.webp"
+        srcset="/baseline/prac_4-480.webp 480w, /baseline/prac_4-800.webp 800w, /baseline/prac_4.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Josef Muller study." loading="lazy" />
+
+      <img src="/baseline/rework_1.webp"
+        srcset="/baseline/rework_1-480.webp 480w, /baseline/rework_1-800.webp 800w, /baseline/rework_1.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Rework thumbnail sketches part 1." loading="lazy" />
+
+      <img src="/baseline/rework_2.webp"
+        srcset="/baseline/rework_2-480.webp 480w, /baseline/rework_2-800.webp 800w, /baseline/rework_2.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Rework thumbnail sketches part 2." loading="lazy" />
+
+      <img src="/baseline/rework_final.webp"
+        srcset="/baseline/rework_final-480.webp 480w, /baseline/rework_final-800.webp 800w, /baseline/rework_final.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Rework A% siz paper black and white flyer." loading="lazy" />
+
+      <img src="/baseline/kids_save.webp"
+        srcset="/baselinekids_save.webpl-480.webp 480w, /baseline/kids_save.webp-800.webp 800w, /baseline/kids_save.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Kids save money sketches." loading="lazy" />
+
+      <img src="/baseline/date_app_ethics.webp"
+        srcset="/baseline/date_app_ethics-480.webp 480w, /baseline/date_app_ethics-800.webp 800w, /baseline/date_app_ethics.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Dating app ethics notes." loading="lazy" />
+
+      <img src="/baseline/date_app_wire.webp"
+        srcset="/baseline/date_app_wire-480.webp 480w, /baseline/date_app_wire-800.webp 800w, /baseline/date_app_wire.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Dating app thumbnail sketches." loading="lazy" />
+
+      <img src="/baseline/date_one_ft.webp"
+        srcset="/baseline/date_one_ft.webp-480.webp 480w, /baseline/date_one_ft.webp-800.webp 800w, /baseline/date_one_ft.webp 1200w"
+        sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px" width="800" height="600"
+        alt="Dating app thumbnail sketches of one feature." loading="lazy" />
+
+
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; 2026 Kiron Roy. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
